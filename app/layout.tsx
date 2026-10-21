@@ -1,5 +1,6 @@
 import type { ReactNode } from "react";
-import Script from "next/script";
+import { ProductionScripts } from "@/components/production-scripts";
+import { AdsterraDesktopRails } from "@/components/ads/adsterra-desktop-rails";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 
@@ -20,31 +21,11 @@ type Props = {
 export default function RootLayout({ children }: Props) {
   return (
     <html lang="fr" className="light" style={{ colorScheme: "light" }} suppressHydrationWarning>
-      <head>
-        {/* <Script
-          strategy="afterInteractive"
-          src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2623631636848395"
-          crossOrigin="anonymous"
-        /> */}
-      </head>
+      {/* AdSense remains disabled. */}
       <body className={`${geistSans.variable} ${geistMono.variable} antialiased`}>
         {children}
-        <Script
-          strategy="lazyOnload"
-          src="https://www.googletagmanager.com/gtag/js?id=G-JEZZYNYR5R"
-        />
-        <Script
-          id="google-analytics"
-          strategy="lazyOnload"
-          dangerouslySetInnerHTML={{
-            __html: `
-              window.dataLayer = window.dataLayer || [];
-              function gtag(){dataLayer.push(arguments);}
-              gtag('js', new Date());
-              gtag('config', 'G-JEZZYNYR5R');
-            `,
-          }}
-        />
+        <ProductionScripts />
+        <AdsterraDesktopRails />
       </body>
     </html>
   );
