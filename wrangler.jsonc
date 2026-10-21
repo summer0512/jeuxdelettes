@@ -1,0 +1,19 @@
+{
+  "main": ".open-next/worker.js",
+  "name": "sutom",
+  "compatibility_date": "2025-03-25",
+  "compatibility_flags": [
+    "nodejs_compat"
+  ],
+  "assets": {
+    "directory": ".open-next/assets",
+    "binding": "ASSETS"
+  },
+  "kv_namespaces": [
+    {
+      "binding": "SUTOM",
+      "id": "060ae4b6412f4cff87d10b5c8754a112",
+      "preview_id": "060ae4b6412f4cff87d10b5c8754a112"
+    }
+  ]
+}

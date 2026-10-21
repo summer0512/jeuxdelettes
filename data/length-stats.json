@@ -1,0 +1,1604 @@
+{
+  "3": {
+    "length": 3,
+    "answers": {
+      "wordCount": 1296,
+      "vowelAverage": 1.17,
+      "duplicateRate": 0.108,
+      "topLetters": [
+        {
+          "letter": "A",
+          "share": 0.1044
+        },
+        {
+          "letter": "E",
+          "share": 0.0859
+        },
+        {
+          "letter": "I",
+          "share": 0.0769
+        },
+        {
+          "letter": "S",
+          "share": 0.072
+        },
+        {
+          "letter": "O",
+          "share": 0.061
+        },
+        {
+          "letter": "P",
+          "share": 0.0532
+        },
+        {
+          "letter": "C",
+          "share": 0.053
+        },
+        {
+          "letter": "T",
+          "share": 0.0522
+        }
+      ],
+      "commonEndings2": [
+        {
+          "ending": "AN",
+          "share": 0.0147
+        },
+        {
+          "ending": "ES",
+          "share": 0.0147
+        },
+        {
+          "ending": "IE",
+          "share": 0.0139
+        },
+        {
+          "ending": "IN",
+          "share": 0.0139
+        },
+        {
+          "ending": "UT",
+          "share": 0.0139
+        }
+      ],
+      "commonEndings3": [
+        {
+          "ending": "AGE",
+          "share": 0.0023
+        },
+        {
+          "ending": "DES",
+          "share": 0.0023
+        },
+        {
+          "ending": "AIE",
+          "share": 0.0015
+        },
+        {
+          "ending": "AIN",
+          "share": 0.0015
+        },
+        {
+          "ending": "AIT",
+          "share": 0.0015
+        }
+      ],
+      "starterWords": [
+        "AIE",
+        "AÏE",
+        "ESA",
+        "SEA",
+        "AIS",
+        "ISA"
+      ]
+    },
+    "all": {
+      "wordCount": 3441,
+      "vowelAverage": 1.03,
+      "duplicateRate": 0.1247,
+      "topLetters": [
+        {
+          "letter": "A",
+          "share": 0.0862
+        },
+        {
+          "letter": "E",
+          "share": 0.082
+        },
+        {
+          "letter": "S",
+          "share": 0.0634
+        },
+        {
+          "letter": "I",
+          "share": 0.0603
+        },
+        {
+          "letter": "P",
+          "share": 0.0562
+        },
+        {
+          "letter": "O",
+          "share": 0.0557
+        },
+        {
+          "letter": "C",
+          "share": 0.0554
+        },
+        {
+          "letter": "T",
+          "share": 0.0535
+        }
+      ],
+      "commonEndings2": [
+        {
+          "ending": "ES",
+          "share": 0.0099
+        },
+        {
+          "ending": "IE",
+          "share": 0.0093
+        },
+        {
+          "ending": "AI",
+          "share": 0.0084
+        },
+        {
+          "ending": "UE",
+          "share": 0.0084
+        },
+        {
+          "ending": "UT",
+          "share": 0.0076
+        }
+      ],
+      "commonEndings3": [
+        {
+          "ending": "AGE",
+          "share": 0.0009
+        },
+        {
+          "ending": "AME",
+          "share": 0.0009
+        },
+        {
+          "ending": "CES",
+          "share": 0.0009
+        },
+        {
+          "ending": "DES",
+          "share": 0.0009
+        },
+        {
+          "ending": "EVE",
+          "share": 0.0009
+        }
+      ],
+      "allowCount": 3441
+    }
+  },
+  "4": {
+    "length": 4,
+    "answers": {
+      "wordCount": 2276,
+      "vowelAverage": 1.75,
+      "duplicateRate": 0.2105,
+      "topLetters": [
+        {
+          "letter": "E",
+          "share": 0.1226
+        },
+        {
+          "letter": "A",
+          "share": 0.104
+        },
+        {
+          "letter": "I",
+          "share": 0.0777
+        },
+        {
+          "letter": "O",
+          "share": 0.0771
+        },
+        {
+          "letter": "S",
+          "share": 0.0665
+        },
+        {
+          "letter": "R",
+          "share": 0.0621
+        },
+        {
+          "letter": "L",
+          "share": 0.0558
+        },
+        {
+          "letter": "N",
+          "share": 0.0526
+        }
+      ],
+      "commonEndings2": [
+        {
+          "ending": "TE",
+          "share": 0.0294
+        },
+        {
+          "ending": "LE",
+          "share": 0.0237
+        },
+        {
+          "ending": "RE",
+          "share": 0.0237
+        },
+        {
+          "ending": "ES",
+          "share": 0.0233
+        },
+        {
+          "ending": "IS",
+          "share": 0.0207
+        }
+      ],
+      "commonEndings3": [
+        {
+          "ending": "ATE",
+          "share": 0.0083
+        },
+        {
+          "ending": "ALE",
+          "share": 0.0075
+        },
+        {
+          "ending": "INE",
+          "share": 0.007
+        },
+        {
+          "ending": "ISE",
+          "share": 0.0057
+        },
+        {
+          "ending": "URE",
+          "share": 0.0057
+        }
+      ],
+      "starterWords": [
+        "AIES",
+        "AISE",
+        "AISÉ",
+        "ASIE",
+        "AIRE",
+        "RAIE"
+      ]
+    },
+    "all": {
+      "wordCount": 7382,
+      "vowelAverage": 1.77,
+      "duplicateRate": 0.2384,
+      "topLetters": [
+        {
+          "letter": "A",
+          "share": 0.1215
+        },
+        {
+          "letter": "E",
+          "share": 0.108
+        },
+        {
+          "letter": "O",
+          "share": 0.0757
+        },
+        {
+          "letter": "I",
+          "share": 0.0709
+        },
+        {
+          "letter": "S",
+          "share": 0.065
+        },
+        {
+          "letter": "R",
+          "share": 0.0582
+        },
+        {
+          "letter": "L",
+          "share": 0.0499
+        },
+        {
+          "letter": "N",
+          "share": 0.0484
+        }
+      ],
+      "commonEndings2": [
+        {
+          "ending": "RE",
+          "share": 0.0179
+        },
+        {
+          "ending": "ES",
+          "share": 0.0177
+        },
+        {
+          "ending": "LE",
+          "share": 0.0169
+        },
+        {
+          "ending": "TE",
+          "share": 0.0161
+        },
+        {
+          "ending": "NE",
+          "share": 0.0148
+        }
+      ],
+      "commonEndings3": [
+        {
+          "ending": "ALE",
+          "share": 0.0042
+        },
+        {
+          "ending": "ATE",
+          "share": 0.0041
+        },
+        {
+          "ending": "ELE",
+          "share": 0.0035
+        },
+        {
+          "ending": "OLE",
+          "share": 0.0033
+        },
+        {
+          "ending": "ARE",
+          "share": 0.0031
+        }
+      ],
+      "allowCount": 7382
+    }
+  },
+  "5": {
+    "length": 5,
+    "answers": {
+      "wordCount": 3782,
+      "vowelAverage": 2.2,
+      "duplicateRate": 0.3665,
+      "topLetters": [
+        {
+          "letter": "E",
+          "share": 0.1542
+        },
+        {
+          "letter": "A",
+          "share": 0.0938
+        },
+        {
+          "letter": "R",
+          "share": 0.0756
+        },
+        {
+          "letter": "S",
+          "share": 0.0747
+        },
+        {
+          "letter": "I",
+          "share": 0.0696
+        },
+        {
+          "letter": "O",
+          "share": 0.066
+        },
+        {
+          "letter": "N",
+          "share": 0.0552
+        },
+        {
+          "letter": "T",
+          "share": 0.0543
+        }
+      ],
+      "commonEndings2": [
+        {
+          "ending": "ES",
+          "share": 0.0698
+        },
+        {
+          "ending": "TE",
+          "share": 0.0428
+        },
+        {
+          "ending": "ER",
+          "share": 0.041
+        },
+        {
+          "ending": "LE",
+          "share": 0.0354
+        },
+        {
+          "ending": "RE",
+          "share": 0.0354
+        }
+      ],
+      "commonEndings3": [
+        {
+          "ending": "CHE",
+          "share": 0.0108
+        },
+        {
+          "ending": "TES",
+          "share": 0.0098
+        },
+        {
+          "ending": "SSE",
+          "share": 0.009
+        },
+        {
+          "ending": "RES",
+          "share": 0.0087
+        },
+        {
+          "ending": "LLE",
+          "share": 0.0079
+        }
+      ],
+      "starterWords": [
+        "AIRES",
+        "RAIES",
+        "SERAI",
+        "OSERA",
+        "ASTRE",
+        "RATES"
+      ]
+    },
+    "all": {
+      "wordCount": 14340,
+      "vowelAverage": 2.22,
+      "duplicateRate": 0.3868,
+      "topLetters": [
+        {
+          "letter": "E",
+          "share": 0.1275
+        },
+        {
+          "letter": "A",
+          "share": 0.118
+        },
+        {
+          "letter": "S",
+          "share": 0.0707
+        },
+        {
+          "letter": "R",
+          "share": 0.0696
+        },
+        {
+          "letter": "O",
+          "share": 0.069
+        },
+        {
+          "letter": "I",
+          "share": 0.0686
+        },
+        {
+          "letter": "N",
+          "share": 0.0577
+        },
+        {
+          "letter": "L",
+          "share": 0.0514
+        }
+      ],
+      "commonEndings2": [
+        {
+          "ending": "ES",
+          "share": 0.0549
+        },
+        {
+          "ending": "ER",
+          "share": 0.0308
+        },
+        {
+          "ending": "ON",
+          "share": 0.0266
+        },
+        {
+          "ending": "TE",
+          "share": 0.0254
+        },
+        {
+          "ending": "LE",
+          "share": 0.0238
+        }
+      ],
+      "commonEndings3": [
+        {
+          "ending": "CHE",
+          "share": 0.0066
+        },
+        {
+          "ending": "TES",
+          "share": 0.006
+        },
+        {
+          "ending": "RES",
+          "share": 0.0059
+        },
+        {
+          "ending": "SSE",
+          "share": 0.0058
+        },
+        {
+          "ending": "LLE",
+          "share": 0.0055
+        }
+      ],
+      "allowCount": 14340
+    }
+  },
+  "6": {
+    "length": 6,
+    "answers": {
+      "wordCount": 5296,
+      "vowelAverage": 2.63,
+      "duplicateRate": 0.558,
+      "topLetters": [
+        {
+          "letter": "E",
+          "share": 0.1657
+        },
+        {
+          "letter": "A",
+          "share": 0.0888
+        },
+        {
+          "letter": "R",
+          "share": 0.0865
+        },
+        {
+          "letter": "S",
+          "share": 0.0772
+        },
+        {
+          "letter": "I",
+          "share": 0.0699
+        },
+        {
+          "letter": "O",
+          "share": 0.0601
+        },
+        {
+          "letter": "N",
+          "share": 0.0601
+        },
+        {
+          "letter": "T",
+          "share": 0.0577
+        }
+      ],
+      "commonEndings2": [
+        {
+          "ending": "ES",
+          "share": 0.1288
+        },
+        {
+          "ending": "ER",
+          "share": 0.067
+        },
+        {
+          "ending": "RE",
+          "share": 0.0417
+        },
+        {
+          "ending": "LE",
+          "share": 0.0372
+        },
+        {
+          "ending": "TE",
+          "share": 0.0347
+        }
+      ],
+      "commonEndings3": [
+        {
+          "ending": "TES",
+          "share": 0.0179
+        },
+        {
+          "ending": "ENT",
+          "share": 0.0157
+        },
+        {
+          "ending": "RES",
+          "share": 0.0147
+        },
+        {
+          "ending": "LES",
+          "share": 0.0144
+        },
+        {
+          "ending": "INE",
+          "share": 0.011
+        }
+      ],
+      "starterWords": [
+        "SERAIT",
+        "SATIRE",
+        "TRANSE",
+        "NAITRE",
+        "NAÎTRE",
+        "RENAÎT"
+      ]
+    },
+    "all": {
+      "wordCount": 20609,
+      "vowelAverage": 2.63,
+      "duplicateRate": 0.5575,
+      "topLetters": [
+        {
+          "letter": "E",
+          "share": 0.1421
+        },
+        {
+          "letter": "A",
+          "share": 0.1044
+        },
+        {
+          "letter": "R",
+          "share": 0.0793
+        },
+        {
+          "letter": "S",
+          "share": 0.0726
+        },
+        {
+          "letter": "I",
+          "share": 0.0702
+        },
+        {
+          "letter": "O",
+          "share": 0.0643
+        },
+        {
+          "letter": "N",
+          "share": 0.0625
+        },
+        {
+          "letter": "T",
+          "share": 0.0541
+        }
+      ],
+      "commonEndings2": [
+        {
+          "ending": "ES",
+          "share": 0.0988
+        },
+        {
+          "ending": "ER",
+          "share": 0.053
+        },
+        {
+          "ending": "ON",
+          "share": 0.035
+        },
+        {
+          "ending": "RE",
+          "share": 0.028
+        },
+        {
+          "ending": "LE",
+          "share": 0.0273
+        }
+      ],
+      "commonEndings3": [
+        {
+          "ending": "TES",
+          "share": 0.0109
+        },
+        {
+          "ending": "INE",
+          "share": 0.0106
+        },
+        {
+          "ending": "RES",
+          "share": 0.0105
+        },
+        {
+          "ending": "ENT",
+          "share": 0.0101
+        },
+        {
+          "ending": "LES",
+          "share": 0.0101
+        }
+      ],
+      "allowCount": 20609
+    }
+  },
+  "7": {
+    "length": 7,
+    "answers": {
+      "wordCount": 6069,
+      "vowelAverage": 3.06,
+      "duplicateRate": 0.7329,
+      "topLetters": [
+        {
+          "letter": "E",
+          "share": 0.1726
+        },
+        {
+          "letter": "R",
+          "share": 0.0898
+        },
+        {
+          "letter": "A",
+          "share": 0.0825
+        },
+        {
+          "letter": "S",
+          "share": 0.0765
+        },
+        {
+          "letter": "I",
+          "share": 0.0732
+        },
+        {
+          "letter": "N",
+          "share": 0.0658
+        },
+        {
+          "letter": "T",
+          "share": 0.0627
+        },
+        {
+          "letter": "O",
+          "share": 0.0572
+        }
+      ],
+      "commonEndings2": [
+        {
+          "ending": "ES",
+          "share": 0.1369
+        },
+        {
+          "ending": "ER",
+          "share": 0.0819
+        },
+        {
+          "ending": "NT",
+          "share": 0.0512
+        },
+        {
+          "ending": "TE",
+          "share": 0.0501
+        },
+        {
+          "ending": "RE",
+          "share": 0.0435
+        }
+      ],
+      "commonEndings3": [
+        {
+          "ending": "ENT",
+          "share": 0.0278
+        },
+        {
+          "ending": "ANT",
+          "share": 0.0201
+        },
+        {
+          "ending": "ONS",
+          "share": 0.0186
+        },
+        {
+          "ending": "RES",
+          "share": 0.018
+        },
+        {
+          "ending": "LES",
+          "share": 0.0171
+        }
+      ],
+      "starterWords": [
+        "SENTIRA",
+        "OSERAIT",
+        "NOTAIRE",
+        "AÉRIENS",
+        "ARSENIC",
+        "ENGRAIS"
+      ]
+    },
+    "all": {
+      "wordCount": 24553,
+      "vowelAverage": 3.07,
+      "duplicateRate": 0.7149,
+      "topLetters": [
+        {
+          "letter": "E",
+          "share": 0.151
+        },
+        {
+          "letter": "A",
+          "share": 0.0987
+        },
+        {
+          "letter": "R",
+          "share": 0.0821
+        },
+        {
+          "letter": "S",
+          "share": 0.0741
+        },
+        {
+          "letter": "I",
+          "share": 0.0737
+        },
+        {
+          "letter": "N",
+          "share": 0.0644
+        },
+        {
+          "letter": "O",
+          "share": 0.0604
+        },
+        {
+          "letter": "T",
+          "share": 0.0577
+        }
+      ],
+      "commonEndings2": [
+        {
+          "ending": "ES",
+          "share": 0.1228
+        },
+        {
+          "ending": "ER",
+          "share": 0.0571
+        },
+        {
+          "ending": "NT",
+          "share": 0.0407
+        },
+        {
+          "ending": "TE",
+          "share": 0.0391
+        },
+        {
+          "ending": "NE",
+          "share": 0.034
+        }
+      ],
+      "commonEndings3": [
+        {
+          "ending": "ENT",
+          "share": 0.02
+        },
+        {
+          "ending": "ONS",
+          "share": 0.0176
+        },
+        {
+          "ending": "ANT",
+          "share": 0.0171
+        },
+        {
+          "ending": "EES",
+          "share": 0.0153
+        },
+        {
+          "ending": "RES",
+          "share": 0.0148
+        }
+      ],
+      "allowCount": 24553
+    }
+  },
+  "8": {
+    "length": 8,
+    "answers": {
+      "wordCount": 7995,
+      "vowelAverage": 3.49,
+      "duplicateRate": 0.8528,
+      "topLetters": [
+        {
+          "letter": "E",
+          "share": 0.1686
+        },
+        {
+          "letter": "R",
+          "share": 0.0884
+        },
+        {
+          "letter": "A",
+          "share": 0.084
+        },
+        {
+          "letter": "I",
+          "share": 0.0803
+        },
+        {
+          "letter": "S",
+          "share": 0.0764
+        },
+        {
+          "letter": "N",
+          "share": 0.0713
+        },
+        {
+          "letter": "T",
+          "share": 0.0695
+        },
+        {
+          "letter": "O",
+          "share": 0.0549
+        }
+      ],
+      "commonEndings2": [
+        {
+          "ending": "ES",
+          "share": 0.1669
+        },
+        {
+          "ending": "NT",
+          "share": 0.0822
+        },
+        {
+          "ending": "ER",
+          "share": 0.0714
+        },
+        {
+          "ending": "TE",
+          "share": 0.0552
+        },
+        {
+          "ending": "EE",
+          "share": 0.0394
+        }
+      ],
+      "commonEndings3": [
+        {
+          "ending": "ENT",
+          "share": 0.0448
+        },
+        {
+          "ending": "ANT",
+          "share": 0.0329
+        },
+        {
+          "ending": "TES",
+          "share": 0.0225
+        },
+        {
+          "ending": "EES",
+          "share": 0.0224
+        },
+        {
+          "ending": "AIT",
+          "share": 0.0213
+        }
+      ],
+      "starterWords": [
+        "NOTAIRES",
+        "ABSTENIR",
+        "ASTREINT",
+        "CERTAINS",
+        "LATRINES",
+        "MARTIENS"
+      ]
+    },
+    "all": {
+      "wordCount": 25539,
+      "vowelAverage": 3.51,
+      "duplicateRate": 0.8465,
+      "topLetters": [
+        {
+          "letter": "E",
+          "share": 0.1574
+        },
+        {
+          "letter": "A",
+          "share": 0.0916
+        },
+        {
+          "letter": "R",
+          "share": 0.0841
+        },
+        {
+          "letter": "I",
+          "share": 0.0797
+        },
+        {
+          "letter": "S",
+          "share": 0.0764
+        },
+        {
+          "letter": "N",
+          "share": 0.0676
+        },
+        {
+          "letter": "T",
+          "share": 0.0639
+        },
+        {
+          "letter": "O",
+          "share": 0.0583
+        }
+      ],
+      "commonEndings2": [
+        {
+          "ending": "ES",
+          "share": 0.1555
+        },
+        {
+          "ending": "NT",
+          "share": 0.0685
+        },
+        {
+          "ending": "ER",
+          "share": 0.052
+        },
+        {
+          "ending": "TE",
+          "share": 0.0425
+        },
+        {
+          "ending": "EE",
+          "share": 0.0322
+        }
+      ],
+      "commonEndings3": [
+        {
+          "ending": "ENT",
+          "share": 0.0364
+        },
+        {
+          "ending": "ANT",
+          "share": 0.0264
+        },
+        {
+          "ending": "AIT",
+          "share": 0.0237
+        },
+        {
+          "ending": "EES",
+          "share": 0.023
+        },
+        {
+          "ending": "TES",
+          "share": 0.0221
+        }
+      ],
+      "allowCount": 25539
+    }
+  },
+  "9": {
+    "length": 9,
+    "answers": {
+      "wordCount": 6743,
+      "vowelAverage": 3.87,
+      "duplicateRate": 0.9254,
+      "topLetters": [
+        {
+          "letter": "E",
+          "share": 0.1624
+        },
+        {
+          "letter": "I",
+          "share": 0.0873
+        },
+        {
+          "letter": "R",
+          "share": 0.0861
+        },
+        {
+          "letter": "A",
+          "share": 0.0812
+        },
+        {
+          "letter": "N",
+          "share": 0.0786
+        },
+        {
+          "letter": "S",
+          "share": 0.0782
+        },
+        {
+          "letter": "T",
+          "share": 0.075
+        },
+        {
+          "letter": "O",
+          "share": 0.0542
+        }
+      ],
+      "commonEndings2": [
+        {
+          "ending": "ES",
+          "share": 0.1796
+        },
+        {
+          "ending": "NT",
+          "share": 0.1178
+        },
+        {
+          "ending": "ER",
+          "share": 0.0669
+        },
+        {
+          "ending": "TE",
+          "share": 0.0534
+        },
+        {
+          "ending": "RE",
+          "share": 0.0393
+        }
+      ],
+      "commonEndings3": [
+        {
+          "ending": "ENT",
+          "share": 0.0704
+        },
+        {
+          "ending": "ANT",
+          "share": 0.0415
+        },
+        {
+          "ending": "TES",
+          "share": 0.0295
+        },
+        {
+          "ending": "EES",
+          "share": 0.0273
+        },
+        {
+          "ending": "AIT",
+          "share": 0.0273
+        }
+      ],
+      "starterWords": [
+        "ASSERTION",
+        "CRÉATIONS",
+        "ONTARIENS",
+        "RÉACTIONS",
+        "RELATIONS",
+        "SORTAIENT"
+      ]
+    },
+    "all": {
+      "wordCount": 23384,
+      "vowelAverage": 3.91,
+      "duplicateRate": 0.9205,
+      "topLetters": [
+        {
+          "letter": "E",
+          "share": 0.1568
+        },
+        {
+          "letter": "A",
+          "share": 0.0873
+        },
+        {
+          "letter": "I",
+          "share": 0.0855
+        },
+        {
+          "letter": "R",
+          "share": 0.0832
+        },
+        {
+          "letter": "S",
+          "share": 0.0793
+        },
+        {
+          "letter": "N",
+          "share": 0.0742
+        },
+        {
+          "letter": "T",
+          "share": 0.0696
+        },
+        {
+          "letter": "O",
+          "share": 0.0579
+        }
+      ],
+      "commonEndings2": [
+        {
+          "ending": "ES",
+          "share": 0.1797
+        },
+        {
+          "ending": "NT",
+          "share": 0.1027
+        },
+        {
+          "ending": "ER",
+          "share": 0.0458
+        },
+        {
+          "ending": "TE",
+          "share": 0.0443
+        },
+        {
+          "ending": "NS",
+          "share": 0.0416
+        }
+      ],
+      "commonEndings3": [
+        {
+          "ending": "ENT",
+          "share": 0.0582
+        },
+        {
+          "ending": "ANT",
+          "share": 0.0342
+        },
+        {
+          "ending": "AIT",
+          "share": 0.0334
+        },
+        {
+          "ending": "ONS",
+          "share": 0.029
+        },
+        {
+          "ending": "TES",
+          "share": 0.0285
+        }
+      ],
+      "allowCount": 23384
+    }
+  },
+  "10": {
+    "length": 10,
+    "answers": {
+      "wordCount": 4977,
+      "vowelAverage": 4.32,
+      "duplicateRate": 0.9662,
+      "topLetters": [
+        {
+          "letter": "E",
+          "share": 0.1569
+        },
+        {
+          "letter": "I",
+          "share": 0.0939
+        },
+        {
+          "letter": "T",
+          "share": 0.0822
+        },
+        {
+          "letter": "N",
+          "share": 0.0822
+        },
+        {
+          "letter": "R",
+          "share": 0.0819
+        },
+        {
+          "letter": "A",
+          "share": 0.0782
+        },
+        {
+          "letter": "S",
+          "share": 0.078
+        },
+        {
+          "letter": "O",
+          "share": 0.0578
+        }
+      ],
+      "commonEndings2": [
+        {
+          "ending": "ES",
+          "share": 0.1931
+        },
+        {
+          "ending": "NT",
+          "share": 0.1443
+        },
+        {
+          "ending": "TE",
+          "share": 0.0591
+        },
+        {
+          "ending": "ON",
+          "share": 0.0502
+        },
+        {
+          "ending": "ER",
+          "share": 0.0468
+        }
+      ],
+      "commonEndings3": [
+        {
+          "ending": "ENT",
+          "share": 0.0934
+        },
+        {
+          "ending": "ION",
+          "share": 0.0452
+        },
+        {
+          "ending": "ANT",
+          "share": 0.0434
+        },
+        {
+          "ending": "TES",
+          "share": 0.037
+        },
+        {
+          "ending": "AIT",
+          "share": 0.0295
+        }
+      ],
+      "starterWords": [
+        "ASSERTIONS",
+        "ASTRONOMIE",
+        "AUTORISENT",
+        "CONSERVAIT",
+        "COURTISANE",
+        "CROISSANTE"
+      ]
+    },
+    "all": {
+      "wordCount": 19096,
+      "vowelAverage": 4.34,
+      "duplicateRate": 0.9648,
+      "topLetters": [
+        {
+          "letter": "E",
+          "share": 0.1539
+        },
+        {
+          "letter": "I",
+          "share": 0.091
+        },
+        {
+          "letter": "A",
+          "share": 0.0842
+        },
+        {
+          "letter": "R",
+          "share": 0.0829
+        },
+        {
+          "letter": "S",
+          "share": 0.0799
+        },
+        {
+          "letter": "N",
+          "share": 0.0779
+        },
+        {
+          "letter": "T",
+          "share": 0.0744
+        },
+        {
+          "letter": "O",
+          "share": 0.0593
+        }
+      ],
+      "commonEndings2": [
+        {
+          "ending": "ES",
+          "share": 0.1972
+        },
+        {
+          "ending": "NT",
+          "share": 0.132
+        },
+        {
+          "ending": "NS",
+          "share": 0.0479
+        },
+        {
+          "ending": "TE",
+          "share": 0.043
+        },
+        {
+          "ending": "IT",
+          "share": 0.0402
+        }
+      ],
+      "commonEndings3": [
+        {
+          "ending": "ENT",
+          "share": 0.0821
+        },
+        {
+          "ending": "AIT",
+          "share": 0.0389
+        },
+        {
+          "ending": "ONS",
+          "share": 0.036
+        },
+        {
+          "ending": "TES",
+          "share": 0.035
+        },
+        {
+          "ending": "ANT",
+          "share": 0.0344
+        }
+      ],
+      "allowCount": 19096
+    }
+  },
+  "11": {
+    "length": 11,
+    "answers": {
+      "wordCount": 3335,
+      "vowelAverage": 4.75,
+      "duplicateRate": 0.9844,
+      "topLetters": [
+        {
+          "letter": "E",
+          "share": 0.1503
+        },
+        {
+          "letter": "I",
+          "share": 0.1014
+        },
+        {
+          "letter": "N",
+          "share": 0.0861
+        },
+        {
+          "letter": "T",
+          "share": 0.0847
+        },
+        {
+          "letter": "S",
+          "share": 0.0807
+        },
+        {
+          "letter": "R",
+          "share": 0.0792
+        },
+        {
+          "letter": "A",
+          "share": 0.0777
+        },
+        {
+          "letter": "O",
+          "share": 0.0616
+        }
+      ],
+      "commonEndings2": [
+        {
+          "ending": "ES",
+          "share": 0.2033
+        },
+        {
+          "ending": "NT",
+          "share": 0.1484
+        },
+        {
+          "ending": "ON",
+          "share": 0.0687
+        },
+        {
+          "ending": "NS",
+          "share": 0.0558
+        },
+        {
+          "ending": "TE",
+          "share": 0.051
+        }
+      ],
+      "commonEndings3": [
+        {
+          "ending": "ENT",
+          "share": 0.1094
+        },
+        {
+          "ending": "ION",
+          "share": 0.0648
+        },
+        {
+          "ending": "ONS",
+          "share": 0.0462
+        },
+        {
+          "ending": "TES",
+          "share": 0.0354
+        },
+        {
+          "ending": "ANT",
+          "share": 0.0303
+        }
+      ],
+      "starterWords": [
+        "SÉNATORIALE",
+        "ARISTOPHANE",
+        "ARRESTATION",
+        "CONSIDÉRAIT",
+        "CONSIDÉRANT",
+        "CONSTITUERA"
+      ]
+    },
+    "all": {
+      "wordCount": 13879,
+      "vowelAverage": 4.76,
+      "duplicateRate": 0.9864,
+      "topLetters": [
+        {
+          "letter": "E",
+          "share": 0.1511
+        },
+        {
+          "letter": "I",
+          "share": 0.0962
+        },
+        {
+          "letter": "R",
+          "share": 0.0825
+        },
+        {
+          "letter": "N",
+          "share": 0.0817
+        },
+        {
+          "letter": "A",
+          "share": 0.0811
+        },
+        {
+          "letter": "S",
+          "share": 0.079
+        },
+        {
+          "letter": "T",
+          "share": 0.0788
+        },
+        {
+          "letter": "O",
+          "share": 0.0624
+        }
+      ],
+      "commonEndings2": [
+        {
+          "ending": "ES",
+          "share": 0.214
+        },
+        {
+          "ending": "NT",
+          "share": 0.1617
+        },
+        {
+          "ending": "NS",
+          "share": 0.0486
+        },
+        {
+          "ending": "TE",
+          "share": 0.0416
+        },
+        {
+          "ending": "IT",
+          "share": 0.0405
+        }
+      ],
+      "commonEndings3": [
+        {
+          "ending": "ENT",
+          "share": 0.1115
+        },
+        {
+          "ending": "TES",
+          "share": 0.0398
+        },
+        {
+          "ending": "ONS",
+          "share": 0.0398
+        },
+        {
+          "ending": "AIT",
+          "share": 0.0388
+        },
+        {
+          "ending": "ANT",
+          "share": 0.0293
+        }
+      ],
+      "allowCount": 13879
+    }
+  }
+}

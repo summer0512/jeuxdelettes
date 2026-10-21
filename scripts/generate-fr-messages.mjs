@@ -1,0 +1,1308 @@
+import fs from "node:fs/promises";
+import path from "node:path";
+
+const lengths = Array.from({ length: 9 }, (_, index) => index + 3);
+
+const homeKeywords = [
+  "sutom jour",
+  "sutom du jour",
+  "mot du jour sutom",
+  "mot sutom du jour",
+  "sutom mot du jour",
+  "sutom mot",
+  "mot sutom",
+  "sutom solution",
+  "solution sutom",
+  "sutom solution du jour",
+  "sutom du jour solution",
+  "sutom indice",
+  "indice sutom",
+  "sutom indice du jour",
+  "sutom jeu",
+  "jeu sutom",
+  "sutom jeu gratuit",
+  "mot du jour",
+  "sutom gratuit",
+  "sutom en ligne",
+  "sutom wordle",
+  "wordle français",
+  "wordle en français",
+  "sutom motus",
+  "motus",
+  "sutom nocle",
+  "tusmo",
+  "mot commencant par",
+  "mot avec",
+];
+
+const lengthLabel = (n) => `${n} lettres`;
+
+const makeLengthMeta = (n) => ({
+  title: `Sutom ${n} lettres | Mot du jour & mode infini`,
+  description:
+    `Jouez au Sutom ${n} lettres : mot du jour, mode infini et défis personnalisés. ` +
+    `Un jeu de lettres en français avec 6 essais.`,
+});
+
+const makeLengthGuideMeta = (n) => ({
+  title: `Guide Sutom ${n} lettres | Stratégies & astuces`,
+  description:
+    `Conseils et stratégies pour réussir le Sutom ${n} lettres : ouvertures, lecture des indices et réflexes gagnants.`,
+  keywords: `guide sutom ${n} lettres, sutom ${n} lettres, astuces sutom, mot du jour, indice sutom, wordle français`,
+});
+
+const makeLengthGuide = (n) => ({
+  badge: `Guide ${n} lettres`,
+  title: `Guide Sutom ${n} lettres`,
+  subtitle: `Stratégies claires pour progresser avec des mots de ${n} lettres.`,
+  intro:
+    `Le format ${n} lettres change le rythme du jeu : plus de positions à gérer, ` +
+    `mais aussi davantage d’indices. Voici un guide rapide pour gagner plus souvent.`,
+  toc: [
+    { id: "strategie", label: "Stratégie" },
+    { id: "indices", label: "Lire les indices" },
+    { id: "finales", label: "Finitions" },
+  ],
+  sections: [
+    {
+      id: "strategie",
+      eyebrow: "Stratégie",
+      title: "Construire un bon plan de départ",
+      paragraphs: [
+        `Commencez par couvrir des lettres fréquentes en français, puis ajustez vite les positions.`,
+        `Avec ${n} lettres, une bonne ouverture réduit énormément le nombre de mots possibles.`,
+      ],
+      bullets: [
+        "Évitez les doublons trop tôt pour maximiser l’information.",
+        "Cherchez un équilibre entre voyelles et consonnes.",
+        "Adaptez vos essais à la longueur du mot.",
+      ],
+    },
+    {
+      id: "indices",
+      eyebrow: "Indices",
+      title: "Exploiter les couleurs Sutom",
+      paragraphs: [
+        "Rouge : lettre correcte et bien placée.",
+        "Jaune cerclé : lettre présente, mais mal placée.",
+        "Bleu : lettre absente du mot.",
+      ],
+      callout: {
+        title: "Astuce rapide",
+        text: "Verrouillez les lettres rouges et repositionnez les jaunes dès l’essai suivant.",
+      },
+    },
+    {
+      id: "finales",
+      eyebrow: "Finition",
+      title: "Fermer la grille efficacement",
+      paragraphs: [
+        `Une fois 3 ou 4 lettres confirmées, testez les terminaisons fréquentes pour ${n} lettres.`,
+        "Gardez une liste réduite et évitez les essais répétitifs.",
+      ],
+    },
+  ],
+  faq: {
+    title: `FAQ Sutom ${n} lettres`,
+    description: "Réponses rapides aux questions les plus courantes.",
+    entries: [
+      {
+        question: "Le Sutom à cette longueur est-il plus difficile ?",
+        answer:
+          "Oui, plus la longueur augmente, plus le nombre de combinaisons possibles est élevé.",
+      },
+      {
+        question: "Dois-je toujours garder la première lettre ?",
+        answer:
+          "En mode classique Sutom, oui. Vous pouvez aussi activer le mode sans lettre imposée.",
+      },
+      {
+        question: "Puis-je jouer en mode infini ?",
+        answer: "Oui, le mode infini est illimité et parfait pour s’entraîner.",
+      },
+    ],
+  },
+  cta: {
+    title: "Prêt à jouer ?",
+    description: `Lancez une partie Sutom ${n} lettres ou utilisez le solveur pour progresser.`,
+    primaryLabel: `Jouer ${n} lettres`,
+    secondaryLabel: "Ouvrir le solveur",
+  },
+  linkLabel: `Guide Sutom ${n} lettres`,
+});
+
+const makeLengthHowTo = (n) => ({
+  title: `Comment jouer au Sutom ${n} lettres`,
+  subtitle: "Les règles restent les mêmes : 6 essais, indices couleur.",
+  steps: [
+    {
+      number: "1",
+      title: "Entrez un mot",
+      description: `Essayez un mot français de ${n} lettres.`,
+    },
+    {
+      number: "2",
+      title: "Lisez les indices",
+      description:
+        "Rouge = bien placé, jaune cerclé = présent, bleu = absent.",
+    },
+    {
+      number: "3",
+      title: "Ajustez vos essais",
+      description: "Conservez les lettres rouges et repositionnez les jaunes.",
+    },
+  ],
+  tipsTitle: "Conseils rapides",
+  tipsList: [
+    "Testez des voyelles tôt.",
+    "Évitez les doublons au début.",
+    "Gardez une trace des lettres éliminées.",
+  ],
+});
+
+const makeLengthContent = (n) => ({
+  headingDescription:
+    `Affrontez le Sutom ${n} lettres avec un mot du jour, le mode infini et des défis personnalisés.`,
+  introParagraphs: [
+    `Le format ${n} lettres demande de la méthode : les indices sont riches, mais le nombre de mots possibles augmente.`,
+    "Utilisez le solveur pour confirmer des positions et filtrer les lettres.",
+  ],
+  tips: [
+    "Cherchez des combinaisons fréquentes en français.",
+    "Gardez au moins deux voyelles dans vos premiers essais.",
+    "Stabilisez les lettres rouges avant de tester de nouvelles positions.",
+  ],
+  faqTitle: `FAQ Sutom ${n} lettres`,
+  faqSubtitle: "Questions courantes sur ce format.",
+  faq: [
+    {
+      question: "Combien d’essais ai-je ?",
+      answer: "Vous avez toujours 6 essais, quel que soit le nombre de lettres.",
+    },
+    {
+      question: "Le mode infini est-il gratuit ?",
+      answer: "Oui, il est gratuit et illimité.",
+    },
+    {
+      question: "Les accents comptent-ils ?",
+      answer:
+        "Les accents sont acceptés, mais les lettres sont comparées sans accent pour les indices.",
+    },
+  ],
+});
+
+const messages = {
+  HomePage: {
+    title: "Sutom - Jeu de lettres en français | jeuxdelettes.com",
+    description:
+      "Jouez à Sutom gratuitement en ligne : mot du jour, indices, solveur (solutions possibles), mode infini, défis personnalisés et statistiques.",
+    keywords: homeKeywords.join(", "),
+    h1: "Sutom - Mot du jour en français",
+    gameIntro: {
+      title: "Qu’est-ce que Sutom ?",
+      subtitle: "Le Wordle français inspiré de Motus",
+      description:
+        "Sutom est le jeu de lettres quotidien le plus populaire en France. " +
+        "Trouvez le mot du jour en 6 essais grâce aux indices colorés façon Sutom.",
+      features: [
+        "🎯 Un mot du jour chaque jour (heure de Paris)",
+        "♾️ Mode infini pour s’entraîner sans limite",
+        "🔗 Défis personnalisés à partager",
+        "📱 Parfait sur mobile et ordinateur",
+        "🏆 Statistiques et séries pour progresser",
+        "🎨 Indices Sutom : rouge, jaune cerclé, bleu",
+      ],
+      featureHighlights: [
+        {
+          title: "Mot du jour Sutom",
+          description:
+            "Un mot officiel par jour, synchronisé pour tous les joueurs.",
+          keyword: "sutom du jour",
+        },
+        {
+          title: "Indices Sutom",
+          description:
+            "Indices rouges, jaunes cerclés et bleus pour avancer vite.",
+          keyword: "sutom indice",
+        },
+        {
+          title: "Mode infini gratuit",
+          description:
+            "Enchaînez autant de parties que vous voulez pour vous entraîner.",
+          keyword: "sutom gratuit",
+        },
+        {
+          title: "Sutom en ligne",
+          description:
+            "Jouez directement sur navigateur, mobile ou ordinateur.",
+          keyword: "sutom en ligne",
+        },
+        {
+          title: "Défis personnalisés",
+          description:
+            "Créez un mot secret, partagez le lien et comparez vos scores.",
+          keyword: "sutom jeu",
+        },
+        {
+          title: "Solveur Sutom",
+          description:
+            "Obtenez des solutions possibles sans spoiler direct.",
+          keyword: "sutom solution",
+        },
+      ],
+    },
+    howToPlay: {
+      title: "Comment jouer à Sutom",
+      subtitle: "Les règles en 1 minute",
+      steps: [
+        {
+          number: "1",
+          title: "Entrez un mot",
+          description:
+            "Saisissez un mot français de 6 lettres pour commencer.",
+        },
+        {
+          number: "2",
+          title: "Lisez les indices",
+          description:
+            "🟥 Rouge = lettre correcte et bien placée · 🟡 Jaune cerclé = lettre présente · 🟦 Bleu = lettre absente",
+        },
+        {
+          number: "3",
+          title: "Affinez vos essais",
+          description:
+            "Gardez les rouges, repositionnez les jaunes et éliminez les bleues.",
+        },
+        {
+          number: "4",
+          title: "Trouvez le mot",
+          description:
+            "Vous avez 6 essais pour deviner le mot du jour.",
+        },
+      ],
+      tips: {
+        title: "Astuces pour progresser",
+        list: [
+          "Commencez par un mot riche en voyelles.",
+          "Évitez les doublons dans les deux premiers essais.",
+          "Utilisez le solveur si vous bloquez.",
+          "Gardez une trace des lettres éliminées.",
+        ],
+      },
+    },
+    faq: {
+      title: "Questions fréquentes sur Sutom",
+      subtitle: "Mot du jour, mode infini et astuces rapides",
+      questions: [
+        {
+          question: "À quelle heure sort le mot du jour ?",
+          answer:
+            "Chaque jour à 00h00 (heure de Paris), un nouveau mot est disponible.",
+        },
+        {
+          question: "Puis-je jouer au mode infini gratuitement ?",
+          answer:
+            "Oui, le mode infini est illimité et totalement gratuit.",
+        },
+        {
+          question: "Sutom ressemble à Wordle ?",
+          answer:
+            "Oui, mais avec le style Motus : première lettre révélée et indices rouge/jaune/bleu.",
+        },
+        {
+          question: "Où trouver un indice Sutom du jour ?",
+          answer:
+            "Les indices sont affichés après chaque essai. Vous pouvez aussi utiliser le solveur pour filtrer les possibilités.",
+        },
+        {
+          question: "Donnez-vous la solution Sutom du jour ?",
+          answer:
+            "Nous évitons les spoilers directs. Le solveur propose des solutions possibles pour vous aider.",
+        },
+        {
+          question: "Les mots sont-ils uniquement français ?",
+          answer:
+            "Oui, la liste est en français avec prise en compte des accents.",
+        },
+        {
+          question: "Sutom est-il gratuit et en ligne ?",
+          answer:
+            "Oui, Sutom est gratuit et jouable directement sur navigateur.",
+        },
+        {
+          question: "Puis-je créer un défi pour mes amis ?",
+          answer:
+            "Oui, vous pouvez générer un lien avec un mot personnalisé.",
+        },
+        {
+          question: "Sutom nocle, c’est la même chose ?",
+          answer:
+            "Sutom est le jeu original hébergé sur sutom.nocle.fr. jeuxdelettes.com est une version indépendante.",
+        },
+      ],
+    },
+    lengthDirectory: {
+      title: "Sutom par longueur de mot",
+      description:
+        "Choisissez un format de 3 à 11 lettres et jouez en mode quotidien ou infini.",
+      playCta: "Jouer Sutom {length} lettres",
+      searchCta: "Solveur Sutom {length} lettres",
+    },
+  },
+  Header: {
+    title: "Sutom",
+  },
+  PrivacyPage: {
+    meta: {
+      title: "Politique de confidentialité | jeuxdelettes.com",
+      description:
+        "Découvrez comment jeuxdelettes.com collecte et protège vos données lorsque vous jouez à Sutom.",
+      keywords: "politique de confidentialité, sutom, jeux de lettres",
+    },
+    heading: "Politique de confidentialité de jeuxdelettes.com",
+    lastUpdated: "Dernière mise à jour : 8 février 2026",
+    intro:
+      "Cette politique explique comment nous traitons les données des joueurs et visiteurs du site jeuxdelettes.com.",
+    sections: {
+      dataCollection: {
+        title: "Collecte des données",
+        paragraphs: [
+          "Nous collectons uniquement les données nécessaires au fonctionnement du jeu.",
+          "Aucune information sensible n’est requise pour jouer à Sutom.",
+        ],
+        items: [
+          "Données techniques (navigateur, appareil, langue).",
+          "Progression locale des parties et statistiques.",
+          "Préférences d’affichage et cookies essentiels.",
+          "Données anonymes d’usage pour améliorer le service.",
+        ],
+      },
+      adsense: {
+        title: "Publicités et partenaires",
+        paragraphs: [
+          "Nous pouvons afficher des annonces pour financer le site.",
+          "Les partenaires publicitaires peuvent utiliser leurs propres cookies.",
+        ],
+        items: [
+          "Cookies publicitaires pour mesurer la performance.",
+          "Personnalisation limitée des annonces.",
+          "Possibilité de désactivation via les paramètres du navigateur.",
+        ],
+      },
+      cookies: {
+        title: "Cookies",
+        paragraphs: [
+          "Les cookies permettent de mémoriser vos préférences et progrès.",
+          "Vous pouvez contrôler ou supprimer les cookies dans votre navigateur.",
+        ],
+        items: [
+          "Cookies essentiels pour la session de jeu.",
+          "Cookies d’analyse pour comprendre l’usage.",
+          "Cookies publicitaires éventuels.",
+        ],
+      },
+      thirdParties: {
+        title: "Services tiers",
+        paragraphs: [
+          "Certains services tiers peuvent être utilisés pour l’hébergement ou les statistiques.",
+          "Ces services suivent leurs propres politiques de confidentialité.",
+        ],
+      },
+      rights: {
+        title: "Vos droits",
+        paragraphs: [
+          "Vous disposez de droits d’accès, de modification et de suppression de vos données.",
+        ],
+        items: [
+          "Accès aux données enregistrées localement.",
+          "Suppression des cookies et du stockage local.",
+          "Opposition à la collecte d’analyse.",
+          "Correction d’informations inexactes.",
+          "Portabilité des données lorsque applicable.",
+          "Contact direct pour toute demande.",
+        ],
+      },
+      security: {
+        title: "Sécurité",
+        paragraphs: [
+          "Nous mettons en place des mesures pour protéger les données.",
+          "Aucune donnée sensible n’est stockée sur nos serveurs pour le jeu.",
+        ],
+      },
+      children: {
+        title: "Enfants",
+        paragraphs: [
+          "Le site s’adresse à un public général et ne cible pas les enfants de moins de 13 ans.",
+        ],
+      },
+      changes: {
+        title: "Modifications",
+        paragraphs: [
+          "Cette politique peut être mise à jour. La date de mise à jour est affichée en haut de page.",
+        ],
+      },
+    },
+    contact: {
+      title: "Nous contacter",
+      description:
+        "Pour toute question sur la confidentialité, contactez-nous.",
+      emailLabel: "Email :",
+      email: "contact@jeuxdelettes.com",
+    },
+  },
+  TermsPage: {
+    meta: {
+      title: "Conditions d’utilisation | jeuxdelettes.com",
+      description:
+        "Conditions d’utilisation du site jeuxdelettes.com et du jeu Sutom.",
+      keywords: "conditions d’utilisation, sutom, jeux de lettres",
+    },
+    heading: "Conditions d’utilisation de jeuxdelettes.com",
+    lastUpdated: "Dernière mise à jour : 8 février 2026",
+    intro:
+      "Les présentes conditions définissent les règles d’accès et d’utilisation du site.",
+    acceptance:
+      "En utilisant jeuxdelettes.com, vous acceptez ces conditions.",
+    sections: {
+      useOfService: {
+        title: "Utilisation du service",
+        paragraphs: [
+          "Le site propose un jeu de lettres gratuit accessible depuis un navigateur.",
+          "Vous vous engagez à utiliser le service de manière légale et respectueuse.",
+        ],
+      },
+      userResponsibilities: {
+        title: "Responsabilités des utilisateurs",
+        paragraphs: [
+          "Vous êtes responsable de votre usage et de votre matériel.",
+          "Le partage de liens de défis est sous votre responsabilité.",
+        ],
+        items: [
+          "Ne pas perturber le fonctionnement du site.",
+          "Ne pas tenter d’extraire les données sans autorisation.",
+          "Respecter les autres joueurs.",
+          "Respecter les lois en vigueur.",
+        ],
+      },
+      accountAndData: {
+        title: "Compte et données",
+        paragraphs: [
+          "Aucun compte n’est requis pour jouer.",
+          "Les données de progression sont stockées localement dans le navigateur.",
+        ],
+      },
+      adsense: {
+        title: "Publicité",
+        paragraphs: [
+          "Des annonces peuvent être affichées pour financer le service.",
+          "Le contenu publicitaire est géré par des partenaires.",
+        ],
+        items: [
+          "Mesure des performances publicitaires.",
+          "Personnalisation limitée.",
+          "Respect des règles des régies publicitaires.",
+        ],
+      },
+      intellectualProperty: {
+        title: "Propriété intellectuelle",
+        paragraphs: [
+          "Les contenus du site sont protégés par le droit d’auteur.",
+          "Toute reproduction sans autorisation est interdite.",
+        ],
+      },
+      acceptableUse: {
+        title: "Usage acceptable",
+        paragraphs: [
+          "Vous vous engagez à ne pas utiliser le site de manière abusive.",
+        ],
+        items: [
+          "Pas de tentative de piratage.",
+          "Pas de contenu illégal.",
+          "Pas d’automatisation abusive.",
+          "Pas de perturbation du service.",
+          "Pas d’usurpation d’identité.",
+        ],
+      },
+      disclaimer: {
+        title: "Avertissement",
+        paragraphs: [
+          "Le service est fourni « tel quel » sans garantie explicite.",
+          "Nous faisons au mieux pour assurer la disponibilité du site.",
+        ],
+      },
+      liability: {
+        title: "Limitation de responsabilité",
+        paragraphs: [
+          "Nous ne sommes pas responsables des dommages indirects liés à l’usage du site.",
+          "Votre utilisation du site se fait à vos propres risques.",
+        ],
+      },
+      thirdPartyLinks: {
+        title: "Liens vers des sites tiers",
+        paragraphs: [
+          "Le site peut contenir des liens externes. Nous ne contrôlons pas leur contenu.",
+        ],
+      },
+      changes: {
+        title: "Modifications des conditions",
+        paragraphs: [
+          "Ces conditions peuvent être mises à jour. La date de mise à jour est affichée en haut de page.",
+        ],
+      },
+    },
+    contact: {
+      title: "Nous contacter",
+      description:
+        "Pour toute question sur les conditions d’utilisation, contactez-nous.",
+      emailLabel: "Email :",
+      email: "contact@jeuxdelettes.com",
+    },
+  },
+  Footer: {
+    copyright: "jeuxdelettes.com © 2026",
+    privacy: "Politique de confidentialité",
+    terms: "Conditions d’utilisation",
+    guide: "Guide Sutom",
+    wordFinder: "Solveur Sutom",
+    partners: {},
+    nav: {
+      day: "Sutom du jour",
+      indice: "Indice Sutom",
+      solution: "Solution Sutom",
+      play5: "Sutom 5 lettres",
+      play6: "Sutom 6 lettres",
+      play7: "Sutom 7 lettres",
+      search: "Solveur Sutom",
+      guide: "Guide Sutom",
+    },
+  },
+  SutomDayPage: {
+    meta: {
+      title: "Sutom du jour – Mot du jour en français | jeuxdelettes.com",
+      description:
+        "Jouez au Sutom du jour : heure de mise à jour, indices et stratégies sans spoiler. Accès au solveur et au guide.",
+      keywords:
+        "sutom du jour, mot du jour sutom, sutom jour, mot sutom du jour, sutom mot du jour, mot du jour, sutom indice, sutom solution",
+    },
+    hero: {
+      title: "Sutom du jour",
+      subtitle: "Le mot du jour en français, sans spoiler",
+      description:
+        "Chaque jour, un nouveau mot officiel. Découvrez comment profiter des indices et progresser sans révéler la réponse.",
+      ctaPlay: "Jouer maintenant",
+      ctaSolver: "Ouvrir le solveur",
+      ctaGuide: "Voir le guide",
+    },
+    sections: [
+      {
+        id: "heure",
+        title: "À quelle heure sort le mot du jour ?",
+        description:
+          "Le mot du jour est mis à jour à 00h00 (heure de Paris) pour tous les joueurs.",
+        items: [
+          "Une nouvelle grille chaque jour.",
+          "Même mot pour toute la communauté.",
+          "Le mode infini reste disponible à tout moment.",
+        ],
+      },
+      {
+        id: "regles",
+        title: "Règles rapides",
+        description:
+          "Vous avez 6 essais pour trouver le mot. La première lettre est révélée en mode classique.",
+        items: [
+          "Rouge : lettre correcte et bien placée.",
+          "Jaune cerclé : lettre présente, position différente.",
+          "Bleu : lettre absente du mot.",
+        ],
+      },
+      {
+        id: "sans-spoiler",
+        title: "Trouver la solution sans spoiler",
+        description:
+          "Nous ne publions pas la solution du jour. Utilisez le solveur pour filtrer les possibilités.",
+        items: [
+          "Conservez les lettres rouges.",
+          "Repositionnez les lettres jaunes.",
+          "Testez de nouvelles lettres pour réduire la liste.",
+        ],
+      },
+      {
+        id: "ouvertures",
+        title: "Ouvertures recommandées",
+        description:
+          "Un bon mot d’ouverture maximise l’information obtenue dès le départ.",
+        items: [
+          "Choisissez 2 à 3 voyelles dans les deux premiers essais.",
+          "Évitez les doublons au début pour couvrir plus de lettres.",
+          "Privilégiez des consonnes fréquentes (R, S, T, N, L).",
+        ],
+      },
+      {
+        id: "erreurs",
+        title: "Erreurs courantes à éviter",
+        description:
+          "Ces erreurs ralentissent la résolution du mot du jour.",
+        items: [
+          "Ignorer une lettre jaune (elle est forcément dans le mot).",
+          "Changer une lettre rouge de position.",
+          "Tester des mots trop similaires sans nouvelle lettre.",
+        ],
+      },
+      {
+        id: "comparaison",
+        title: "Sutom, Wordle et Motus : quelles différences ?",
+        description:
+          "Un rappel rapide pour situer Sutom parmi les jeux de lettres.",
+        items: [
+          "Sutom révèle la première lettre et utilise rouge/jaune cerclé/bleu.",
+          "Wordle ne révèle pas de lettre et utilise vert/jaune/gris.",
+          "Motus est l’inspiration TV française, Sutom en reprend le style.",
+        ],
+      },
+    ],
+    faq: {
+      title: "FAQ Sutom du jour",
+      description: "Réponses rapides sur le mot du jour.",
+      entries: [
+        {
+          question: "Donnez-vous la solution Sutom du jour ?",
+          answer:
+            "Non. Nous évitons les spoilers directs et proposons un solveur pour filtrer les mots possibles.",
+        },
+        {
+          question: "Puis-je jouer plusieurs fois au mot du jour ?",
+          answer:
+            "Le mot du jour est unique. Pour rejouer, utilisez le mode infini.",
+        },
+        {
+          question: "Les accents sont-ils pris en compte ?",
+          answer:
+            "Oui, les mots peuvent être accentués. Les indices restent cohérents sans accent.",
+        },
+      ],
+    },
+  },
+  IndicePage: {
+    meta: {
+      title: "Indice Sutom – Comprendre les indices du jour | jeuxdelettes.com",
+      description:
+        "Guide des indices Sutom : rouge, jaune cerclé, bleu. Apprenez à lire les indices du jour sans spoiler.",
+      keywords:
+        "indice sutom, sutom indice, indice sutom du jour, sutom indice du jour, mot du jour sutom, sutom du jour, sutom solution",
+    },
+    hero: {
+      title: "Indice Sutom",
+      subtitle: "Comprendre les indices du jour",
+      description:
+        "Les indices Sutom sont simples mais puissants. Voici comment les utiliser pour trouver le mot du jour.",
+      ctaPlay: "Jouer maintenant",
+      ctaSolver: "Utiliser le solveur",
+    },
+    sections: [
+      {
+        id: "couleurs",
+        title: "Rouge, jaune cerclé, bleu",
+        description:
+          "Chaque couleur indique le statut d’une lettre dans le mot à trouver.",
+        items: [
+          "Rouge : lettre correcte et bien placée.",
+          "Jaune cerclé : lettre présente mais mal placée.",
+          "Bleu : lettre absente.",
+        ],
+      },
+      {
+        id: "strategie",
+        title: "Exploiter les indices",
+        description:
+          "L’objectif est de réduire rapidement le nombre de mots possibles.",
+        items: [
+          "Gardez les rouges en place.",
+          "Repositionnez immédiatement les jaunes.",
+          "Évitez les doublons au début.",
+        ],
+      },
+      {
+        id: "sans-spoiler",
+        title: "Indice du jour sans spoiler",
+        description:
+          "Les indices vous suffisent pour progresser. Le solveur peut aider à filtrer sans révéler la réponse.",
+        items: [
+          "Utilisez le solveur après 2 essais.",
+          "Testez des lettres fréquentes.",
+          "Verrouillez les terminaisons une fois repérées.",
+        ],
+      },
+      {
+        id: "ouvertures",
+        title: "Ouvertures efficaces",
+        description:
+          "Des ouvertures solides facilitent la lecture des indices.",
+        items: [
+          "Utilisez un mot avec plusieurs voyelles distinctes.",
+          "Évitez les lettres rares lors du premier essai.",
+          "Cherchez à couvrir 5 lettres différentes rapidement.",
+        ],
+      },
+      {
+        id: "erreurs",
+        title: "Erreurs courantes",
+        description:
+          "Quelques pièges classiques liés aux indices.",
+        items: [
+          "Confondre jaune cerclé et bleu.",
+          "Oublier que la première lettre est toujours imposée.",
+          "Ignorer un doublon possible quand les indices le suggèrent.",
+        ],
+      },
+      {
+        id: "comparaison",
+        title: "Sutom, Wordle et Motus : quelles différences ?",
+        description:
+          "Comprendre le style Sutom aide à mieux lire les indices.",
+        items: [
+          "Sutom affiche la première lettre et des indices rouge/jaune cerclé/bleu.",
+          "Wordle utilise vert/jaune/gris sans lettre imposée.",
+          "Motus est l’inspiration française historique de Sutom.",
+        ],
+      },
+    ],
+    faq: {
+      title: "FAQ Indice Sutom",
+      description: "Questions courantes sur les indices.",
+      entries: [
+        {
+          question: "Les indices changent-ils selon la longueur ?",
+          answer: "Non, les couleurs fonctionnent de la même manière.",
+        },
+        {
+          question: "Puis-je ignorer les jaunes ?",
+          answer:
+            "Non, les jaunes sont essentielles : elles sont dans le mot.",
+        },
+        {
+          question: "Le solveur donne-t-il la réponse ?",
+          answer:
+            "Il propose des mots possibles, mais vous choisissez le bon.",
+        },
+      ],
+    },
+  },
+  SolutionPage: {
+    meta: {
+      title: "Solution Sutom – Solutions possibles sans spoiler | jeuxdelettes.com",
+      description:
+        "Pas de spoiler direct : utilisez le solveur et nos stratégies pour trouver la solution Sutom du jour.",
+      keywords:
+        "sutom solution, solution sutom, sutom solution du jour, solution sutom du jour, sutom du jour solution, mot du jour sutom, sutom indice",
+    },
+    hero: {
+      title: "Solution Sutom",
+      subtitle: "Des solutions possibles, sans spoiler",
+      description:
+        "Nous ne publions pas la réponse du jour. Voici comment trouver la solution avec méthode.",
+      ctaPlay: "Jouer maintenant",
+      ctaSolver: "Ouvrir le solveur",
+    },
+    sections: [
+      {
+        id: "approche",
+        title: "Notre approche sans spoiler",
+        description:
+          "Objectif : vous aider à trouver le mot sans révéler la réponse.",
+        items: [
+          "Déduire les lettres confirmées.",
+          "Tester des combinaisons logiques.",
+          "Utiliser le solveur pour filtrer.",
+        ],
+      },
+      {
+        id: "solveur",
+        title: "Utiliser le solveur efficacement",
+        description:
+          "Le solveur propose des solutions possibles à partir de vos indices.",
+        items: [
+          "Saisissez les rouges à leur position.",
+          "Ajoutez les jaunes dans les lettres présentes.",
+          "Excluez les bleues pour éliminer les mots.",
+        ],
+      },
+      {
+        id: "checklist",
+        title: "Checklist rapide",
+        description:
+          "Avant votre prochain essai, vérifiez ces points.",
+        items: [
+          "Avez-vous testé assez de voyelles ?",
+          "Les lettres rouges sont-elles bien fixées ?",
+          "Les jaunes sont-elles replacées ?",
+        ],
+      },
+      {
+        id: "ouvertures",
+        title: "Ouvertures recommandées",
+        description:
+          "Des essais initiaux variés réduisent rapidement la liste.",
+        items: [
+          "Couvrez le maximum de lettres différentes.",
+          "Mixez voyelles et consonnes fréquentes.",
+          "Évitez les mots trop rares au début.",
+        ],
+      },
+      {
+        id: "erreurs",
+        title: "Erreurs courantes",
+        description:
+          "À éviter pour ne pas bloquer votre progression.",
+        items: [
+          "Rejouer les mêmes lettres sans nouvelle information.",
+          "Changer l’ordre des rouges confirmés.",
+          "Oublier de tester les voyelles manquantes.",
+        ],
+      },
+      {
+        id: "comparaison",
+        title: "Sutom, Wordle et Motus : quelles différences ?",
+        description:
+          "Un repère pour adapter votre méthode de résolution.",
+        items: [
+          "Sutom impose la première lettre et des indices rouge/jaune cerclé/bleu.",
+          "Wordle laisse tout libre et utilise vert/jaune/gris.",
+          "Motus est le format TV d’origine qui a inspiré Sutom.",
+        ],
+      },
+    ],
+    faq: {
+      title: "FAQ Solution Sutom",
+      description: "Réponses aux questions sur les solutions.",
+      entries: [
+        {
+          question: "Pourquoi ne pas donner la solution du jour ?",
+          answer:
+            "Pour éviter les spoilers et préserver l’expérience de jeu.",
+        },
+        {
+          question: "Le solveur suffit-il pour trouver le mot ?",
+          answer:
+            "Oui, il réduit fortement les possibilités sans révéler la réponse.",
+        },
+        {
+          question: "Puis-je rejouer si j’échoue ?",
+          answer:
+            "Pour le mot du jour, il faut attendre le lendemain. Sinon, utilisez le mode infini.",
+        },
+      ],
+    },
+  },
+  GuidePage: {
+    meta: {
+      title: "Guide Sutom 2026 : règles, stratégies et mot du jour",
+      description:
+        "Le guide complet pour réussir Sutom : règles, indices, mot du jour, solveur, mode infini et défis.",
+      keywords:
+        "guide sutom, comment jouer sutom, mot du jour sutom, indice sutom, sutom solution, wordle français, motus",
+    },
+    hero: {
+      title: "Guide complet de Sutom",
+      subtitle:
+        "Tout ce qu’il faut pour progresser au mot du jour, au mode infini et aux défis.",
+      content:
+        "Retrouvez les meilleures ouvertures, la lecture des indices et les astuces pour optimiser vos statistiques.",
+      cta: "Voir le guide",
+    },
+    intro: {
+      title: "Vue d’ensemble de Sutom",
+      description:
+        "Sutom est le jeu de lettres quotidien en français inspiré de Motus et Wordle.",
+      items: [
+        "6 essais pour trouver le mot du jour.",
+        "Indices rouges, jaunes cerclés et bleus.",
+        "Première lettre révélée en mode classique.",
+      ],
+    },
+    strategies: {
+      title: "Stratégies gagnantes",
+      description:
+        "Les bonnes décisions dès le départ font la différence.",
+      items: [
+        "Ouvrir avec un mot riche en voyelles.",
+        "Éviter les doublons au début.",
+        "Réorganiser rapidement les lettres jaunes.",
+      ],
+    },
+    modes: {
+      title: "Modes de jeu",
+      description:
+        "Choisissez entre le mot du jour, le mode infini et les défis personnalisés.",
+      items: [
+        "Mot du jour synchronisé pour tous.",
+        "Mode infini illimité.",
+        "Défis personnalisés via lien.",
+      ],
+    },
+    challenges: {
+      title: "Défis et partage",
+      description:
+        "Créez des défis entre amis et comparez vos scores.",
+      items: [
+        "Générez un lien avec un mot secret.",
+        "Partagez vos résultats en emoji.",
+        "Organisez des compétitions amicales.",
+      ],
+    },
+    stats: {
+      title: "Statistiques",
+      description:
+        "Suivez vos victoires, votre distribution d’essais et vos séries.",
+      items: [
+        "Série en cours et meilleur record.",
+        "Distribution des essais gagnants.",
+        "Historique des parties locales.",
+      ],
+      cta: "Voir vos statistiques",
+      ctaDescription:
+        "Analysez vos performances pour progresser plus vite.",
+    },
+    resources: {
+      title: "Ressources utiles",
+      description:
+        "Guides, solveur et astuces pour rester performant.",
+      items: [
+        "Guide complet et règles.",
+        "Solveur Sutom par longueur.",
+        "Indices et solutions possibles via le solveur.",
+      ],
+    },
+    faq: {
+      title: "FAQ Sutom",
+      description: "Réponses aux questions fréquentes.",
+      entries: [
+        {
+          question: "Quelle est la différence entre mot du jour et mode infini ?",
+          answer:
+            "Le mot du jour est unique et commun à tous. Le mode infini propose des mots aléatoires illimités.",
+        },
+        {
+          question: "Où trouver un indice Sutom ?",
+          answer:
+            "Les indices apparaissent à chaque essai. Le solveur aide à filtrer les possibilités.",
+        },
+        {
+          question: "Puis-je jouer sur mobile ?",
+          answer:
+            "Oui, Sutom est optimisé pour mobile, tablette et ordinateur.",
+        },
+        {
+          question: "Les accents sont-ils pris en compte ?",
+          answer:
+            "Oui, les mots peuvent contenir des accents. Les indices restent cohérents.",
+        },
+      ],
+    },
+    pointers: [
+      {
+        title: "Mot du jour",
+        description: "Jouez la grille quotidienne et partagez vos résultats.",
+        href: "/",
+      },
+      {
+        title: "Sutom du jour",
+        description: "Règles rapides et méthode sans spoiler.",
+        href: "/sutom-du-jour",
+      },
+      {
+        title: "Indice Sutom",
+        description: "Comprendre rouge, jaune cerclé et bleu.",
+        href: "/indice-sutom",
+      },
+      {
+        title: "Solution Sutom",
+        description: "Solutions possibles via le solveur, sans spoiler.",
+        href: "/solution-sutom",
+      },
+      {
+        title: "Mode infini",
+        description: "Entraînez-vous autant que vous voulez.",
+        href: "/#modes",
+      },
+      {
+        title: "Statistiques",
+        description: "Suivez vos performances et vos séries.",
+        href: "/#statistiques",
+      },
+      {
+        title: "Installer l’app",
+        description: "Ajoutez Sutom à l’écran d’accueil.",
+        href: "/#pwa",
+      },
+    ],
+    lengthGuides: {
+      title: "Guides par longueur",
+      description:
+        "Des conseils adaptés à chaque format de 3 à 11 lettres.",
+      items: lengths.map((n) => ({
+        title: `Guide Sutom ${n} lettres`,
+        description: `Stratégies et astuces pour ${n} lettres.`,
+        href: `/guide-sutom-${n}-lettres`,
+      })),
+    },
+  },
+  WordFinderPage: {
+    meta: {
+      title: "Solveur Sutom 5 lettres – Mots valides et indices | jeuxdelettes.com",
+      description:
+        "Utilisez le solveur Sutom 5 lettres pour filtrer les lettres rouges, jaunes et bleues et trouver un mot commençant par les bonnes lettres.",
+      keywords: "solveur sutom, sutom 5 lettres, mot du jour sutom, sutom solution, mot commencant par, mot avec",
+    },
+    hero: {
+      badge: "Solveur Sutom",
+      title: "Solveur Sutom 5 lettres en français",
+      description:
+        "Accélérez vos parties Sutom avec des indices et des mots possibles.",
+      cta: "Jouer au Sutom",
+      secondary: "Voir le guide",
+      highlights: [
+        "Filtrez les positions exactes (rouges).",
+        "Ajoutez les lettres présentes (jaunes).",
+        "Éliminez les lettres absentes (bleues).",
+        "Trouvez un mot commençant par les bonnes lettres.",
+      ],
+      stats: {
+        title: "Statistiques utiles",
+        description: "Lettres fréquentes et terminaisons courantes.",
+      },
+    },
+    tool: {
+      badge: "Outil",
+      title: "Paramétrez vos indices",
+      description: "Renseignez les lettres connues pour filtrer les mots.",
+      positions: "Lettres bien placées",
+      include: "Lettres présentes",
+      exclude: "Lettres absentes",
+      remove: "Retirer",
+      letterBank: "Banque de lettres",
+      clear: "Effacer",
+      results: "Résultats",
+      copy: "Copier",
+      copied: "Copié !",
+    },
+    sectionsDefaultBadge: "Guide Sutom",
+    sections: [
+      {
+        id: "strategie",
+        badge: "Méthode",
+        title: "Comment utiliser le solveur Sutom",
+        description:
+          "Le solveur fonctionne comme un filtre : plus vous ajoutez d’indices, plus la liste se réduit.",
+        paragraphs: [
+          "Renseignez les lettres rouges avec leur position exacte.",
+          "Ajoutez les lettres jaunes dans la liste des présentes.",
+          "Excluez les lettres bleues pour éliminer les mots impossibles.",
+          "Utilisez-le si vous cherchez un mot commençant par une lettre précise.",
+        ],
+        bullets: [
+          "Utilisez-le après le 2e essai.",
+          "Gardez des lettres variées au début.",
+          "Validez les terminaisons fréquentes.",
+        ],
+      },
+      {
+        id: "indices",
+        badge: "Indices",
+        title: "Interpréter rouge, jaune, bleu",
+        description:
+          "Les indices Sutom guident la prochaine tentative.",
+        paragraphs: [
+          "Rouge = lettre correcte et bien placée.",
+          "Jaune cerclé = lettre présente mais mal placée.",
+          "Bleu = lettre absente du mot.",
+        ],
+      },
+    ],
+    lengthContent: Object.fromEntries(
+      lengths.map((n) => [
+        n,
+        {
+          sections: [
+            {
+              id: "strategie",
+              badge: "Méthode",
+              title: `Solveur Sutom ${n} lettres`,
+              description:
+                `Filtrez les mots français de ${n} lettres grâce aux indices.`,
+              paragraphs: [
+                "Renseignez vos lettres rouges et jaunes.",
+                "Éliminez les lettres bleues pour gagner du temps.",
+              ],
+            },
+          ],
+          faq: {
+            title: `FAQ Solveur ${n} lettres`,
+            description: "Questions fréquentes sur le solveur.",
+            entries: [
+              {
+                question: "Le solveur donne-t-il la solution ?",
+                answer:
+                  "Il propose des mots possibles, mais c’est à vous de choisir.",
+              },
+              {
+                question: "Est-ce gratuit ?",
+                answer: "Oui, le solveur est gratuit et illimité.",
+              },
+            ],
+          },
+        },
+      ])
+    ),
+    faq: {
+      title: "FAQ Solveur Sutom",
+      description: "Réponses rapides pour mieux utiliser l’outil.",
+      entries: [
+        {
+          question: "Puis-je l’utiliser pour le mot du jour ?",
+          answer: "Oui, il fonctionne avec tous les modes.",
+        },
+        {
+          question: "Les accents sont-ils acceptés ?",
+          answer: "Oui, les mots accentués sont pris en compte.",
+        },
+        {
+          question: "Le solveur remplace-t-il la solution du jour ?",
+          answer:
+            "Il vous propose des solutions possibles, sans spoiler direct.",
+        },
+      ],
+    },
+  },
+  ExtensionPage: {
+    backToHome: "Retour au jeu",
+  },
+  LengthGuidePage: {
+    meta: Object.fromEntries(lengths.map((n) => [n, makeLengthGuideMeta(n)])),
+    lengths: Object.fromEntries(lengths.map((n) => [n, makeLengthGuide(n)])),
+  },
+  BuscadorTermoPage: {
+    seoTitle: "Solveur Sutom {length} lettres | Mots valides",
+    seoDescription:
+      "Utilisez le solveur Sutom {length} lettres pour filtrer les indices et trouver un mot commençant par les bonnes lettres.",
+    seoKeywords:
+      "solveur sutom, sutom {length} lettres, mot du jour, sutom solution, mot commencant par, mot avec",
+    heading: "Solveur Sutom {length} lettres",
+    subheading:
+      "Filtrez les lettres rouges, jaunes cerclées et bleues pour trouver le mot exact.",
+    lengthMeta: Object.fromEntries(
+      lengths.map((n) => [
+        n,
+        {
+          title: `Solveur Sutom ${n} lettres | Filtrer les indices`,
+          description:
+            `Trouvez des mots français de ${n} lettres compatibles avec vos indices.`,
+          keywords: `solveur sutom ${n} lettres, sutom ${n} lettres, mot du jour, mot commencant par`,
+        },
+      ])
+    ),
+    lengthHeadings: Object.fromEntries(
+      lengths.map((n) => [
+        n,
+        {
+          heading: `Solveur Sutom ${n} lettres`,
+          subheading: `Affinez vos essais Sutom avec des mots de ${n} lettres.`,
+        },
+      ])
+    ),
+    lengthLabel: "Longueur du mot",
+    shareButton: "Partager",
+    shareMessage: "Découvre le solveur Sutom {length} lettres",
+    shareShared: "Partagé !",
+    shareCopied: "Lien copié !",
+    shareError: "Impossible de partager",
+    filtersTitle: "Filtres d’indices",
+    filtersDescription:
+      "Renseignez vos lettres pour réduire la liste de mots.",
+    clearFilters: "Réinitialiser",
+    correctLettersTitle: "Lettres bien placées (rouges)",
+    correctLettersDescription:
+      "Indiquez les lettres confirmées à la bonne position.",
+    includeLettersTitle: "Lettres présentes (jaunes)",
+    includeLettersDescription:
+      "Ajoutez les lettres présentes mais mal placées.",
+    includeEmpty: "Sélectionner des lettres",
+    excludeLettersTitle: "Lettres absentes (bleues)",
+    excludeLettersDescription:
+      "Excluez les lettres qui ne sont pas dans le mot.",
+    excludeEmpty: "Sélectionner des lettres",
+    examples: "Exemples d’utilisation",
+    example2: "Exemple : mot du jour Sutom",
+    resultsTitle: "Mots possibles",
+    resultsDescription:
+      "Liste des mots compatibles avec vos indices.",
+    resultsCount: "{count} mots trouvés",
+    wordListLoading: "Chargement du dictionnaire...",
+    wordListError:
+      "Impossible de charger la liste de mots. Réessayez plus tard.",
+    noResultsHelp:
+      "Aucun mot trouvé. Essayez de retirer une contrainte.",
+    resultsLimitNotice:
+      "Affichage limité à {count} résultats sur {total} possibles.",
+    guideLinkFallback: "Guide Sutom complet",
+    helperTitle: "Astuces rapides",
+    tip1: "Validez d’abord les lettres rouges.",
+    tip2: "Réorganisez les jaunes dès l’essai suivant.",
+    tip3: "Évitez les doublons au début.",
+    allWordsSummary: "Liste officielle des mots acceptés",
+    allWordsDescription:
+      "Toutes les solutions et mots valides pour le format {length} lettres.",
+  },
+  LengthPage: {
+    heading: "Sutom {length} lettres",
+    headingDescription:
+      "Jouez au Sutom {length} lettres en mode quotidien, infini ou défi.",
+    introTitle: "Comment jouer au Sutom {length} lettres",
+    introParagraphs: [
+      "Vous avez 6 essais pour trouver le mot du jour.",
+      "Les indices Sutom vous guident vers la solution.",
+    ],
+    tipsTitle: "Conseils rapides",
+    tips: [
+      "Commencez par un mot riche en voyelles.",
+      "Évitez les doublons au début.",
+      "Utilisez le solveur en cas de blocage.",
+    ],
+    guideLinkFallback: "Guide Sutom complet",
+    linksTitle: "Aller plus loin",
+    linksIntro: "Continuez avec ces ressources utiles :",
+    sameLengthSearch: "Solveur Sutom {length} lettres",
+    currentLengthPlayCta: "Rejouer en {length} lettres",
+    otherLengthsTitle: "Autres formats Sutom",
+    otherLengthsDescription:
+      "Testez d’autres longueurs pour varier la difficulté.",
+    otherLengthCta: "Jouer {length} lettres",
+    faq: {
+      title: "FAQ Sutom {length} lettres",
+      subtitle: "Questions fréquentes pour ce format.",
+      entries: [
+        {
+          question: "Le format change-t-il la difficulté ?",
+          answer: "Oui, plus il y a de lettres, plus il y a de combinaisons.",
+        },
+        {
+          question: "Combien d’essais ai-je ?",
+          answer: "Toujours 6 essais, quel que soit le format.",
+        },
+        {
+          question: "Puis-je jouer en mode infini ?",
+          answer: "Oui, le mode infini est illimité.",
+        },
+      ],
+    },
+    meta: Object.fromEntries(lengths.map((n) => [n, makeLengthMeta(n)])),
+    howToPlay: Object.fromEntries(lengths.map((n) => [n, makeLengthHowTo(n)])),
+    lengthContent: Object.fromEntries(
+      lengths.map((n) => [n, makeLengthContent(n)])
+    ),
+  },
+};
+
+const outputPath = path.join(process.cwd(), "messages", "fr.json");
+await fs.writeFile(outputPath, JSON.stringify(messages, null, 2), "utf8");
+console.log(`Wrote ${outputPath}`);

@@ -1,0 +1,28 @@
+{
+  "additionalFAQs": [
+    {
+      "question": "À quelle heure le mot du jour est-il mis à jour ?",
+      "answer": "Le mot du jour est mis à jour chaque jour à 00h00 (heure de Paris). Dès minuit, une nouvelle solution est disponible pour tous les joueurs."
+    },
+    {
+      "question": "Puis-je jouer au mode infini gratuitement ?",
+      "answer": "Oui ! Le mode infini est totalement gratuit et illimité. Vous pouvez enchaîner autant de parties que vous voulez, sans restriction de temps. C’est parfait pour s’entraîner avant le mot du jour."
+    },
+    {
+      "question": "Comment fonctionne le mode infini ?",
+      "answer": "En mode infini, chaque partie propose un mot différent et aléatoire. Il n’y a pas de limite quotidienne, contrairement au mot du jour qui n’a qu’une seule solution par jour."
+    },
+    {
+      "question": "Quel mode est le meilleur : mot du jour ou infini ?",
+      "answer": "Les deux se complètent ! Le mot du jour est le défi officiel quotidien que tout le monde joue. Le mode infini est idéal pour pratiquer, progresser et s’amuser sans limites. Beaucoup de joueurs font d’abord le quotidien, puis s’entraînent en infini."
+    },
+    {
+      "question": "Où trouver un indice Sutom du jour ?",
+      "answer": "Les indices apparaissent après chaque essai (rouge, jaune cerclé, bleu). Vous pouvez aussi utiliser le solveur pour filtrer les possibilités."
+    },
+    {
+      "question": "Donnez-vous la solution Sutom du jour ?",
+      "answer": "Nous évitons les spoilers directs. Le solveur propose des solutions possibles pour vous aider à trouver le mot."
+    }
+  ]
+}
