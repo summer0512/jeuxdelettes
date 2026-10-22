@@ -47,6 +47,7 @@ import {
   type StoredStats,
 } from "@/lib/stats";
 import type { SupportedWordLength } from "@/lib/wordLengths";
+import { useAdsterraPopunder } from "@/hooks/use-adsterra-popunder";
 import { LengthSwitcher, type LengthOption } from "@/components/length-switcher";
 
 type GameMode = "daily" | "infinite" | "challenge";
@@ -140,6 +141,7 @@ function Game({ wordLength, lengthOptions, searchHref, challengePath }: GameProp
     createInfiniteGameId(wordLength)
   );
 
+  const { recordCompletedRound, triggerPendingPopunder, resetPendingPopunder } = useAdsterraPopunder();
   const skipWinEffectsRef = useRef(false);
   const skipLoseEffectsRef = useRef(false);
   const isMountedRef = useRef(false);
@@ -165,6 +167,7 @@ function Game({ wordLength, lengthOptions, searchHref, challengePath }: GameProp
   };
 
   const resetTransientState = () => {
+    resetPendingPopunder();
     setGuesses([]);
     setCurrentGuess("");
     setIsGameWon(false);
@@ -197,6 +200,7 @@ function Game({ wordLength, lengthOptions, searchHref, challengePath }: GameProp
       skipLoseEffectsRef.current = false;
     }
 
+    resetPendingPopunder();
     setCurrentSolution(solution);
     setGuesses(state?.guesses ?? []);
     setCurrentGuess(prefillFirstLetter(solution, state?.currentGuess ?? ""));
@@ -592,6 +596,7 @@ function Game({ wordLength, lengthOptions, searchHref, challengePath }: GameProp
       normalizeWordInsensitive(canonicalGuess) ===
       normalizeWordInsensitive(currentSolution);
 
+    const roundKey = getGameIdentifier();
     window.setTimeout(() => {
       setRevealingRowIndex(undefined);
 
@@ -606,6 +611,7 @@ function Game({ wordLength, lengthOptions, searchHref, challengePath }: GameProp
           );
         }
         recordStatsResult(true, newGuesses.length);
+        if (roundKey) recordCompletedRound(roundKey);
         setIsGameWon(true);
       } else if (newGuesses.length === MAX_GUESSES) {
         if (mode === "daily") {
@@ -618,12 +624,14 @@ function Game({ wordLength, lengthOptions, searchHref, challengePath }: GameProp
           );
         }
         recordStatsResult(false, newGuesses.length);
+        if (roundKey) recordCompletedRound(roundKey);
         setIsGameLost(true);
       }
     }, 600);
   };
 
   const handleNewGame = () => {
+    triggerPendingPopunder();
     if (mode === "challenge") {
       if (isMountedRef.current) {
         const identifier = toStorageIdentifier(currentSolution);
